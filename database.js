@@ -1,16 +1,22 @@
 var connection = null;
 
 var orm = require('orm');
-var users = require('./models/users');
+var kota = require('./models/kota');
+var pool = require('./models/pool');
+var rute = require('./models/rute');
+var pemesanan = require('./models/pemesanan');
 
 function setup(db) {
-  users(db);
+  kota(db);
+  pool(db);
+  rute(db);
+  pemesanan(db);
 }
 
 module.exports = function (cb) {
   if (connection) return connection;
 
-  orm.connect("mysql://root:24m281y24@localhost/luxaeterna", function (err, db) {
+  orm.connect("mysql://root@localhost/luxaeterna", function (err, db) {
     if (err) return cb(err);
 
     connections = db;

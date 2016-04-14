@@ -1,5 +1,10 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block body
+  body(ng-app='ReservationApp')
+
+    div#view(ng-view)
+
+block script
+  script(src='/js/angular.library.js')
+  script(src='/js/angular.extended.js')

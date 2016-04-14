@@ -1,0 +1,88 @@
+<div layout='row'>
+  <div flex='80'>
+    
+    <div ng-show='!booking_process && search_result'>
+      <h3>{{rute}}</h3>
+      <table style="width: 100%; text-align:center;">
+        <thead>
+          <tr><th width='10'>Keberangkatan</th><th  width='10'>Harga</th><th  width='10'>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="rute in search_result">
+          <td>{{rute.keberangkatan}}</td><td>{{rute.harga}}</td><td><md-button ng-click="booking(rute.id)" class='md-raised'>Booking</md-button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div ng-show='booking_process'>
+      <div layout='column'>
+        <md-card style='padding: 0px 20px 20px 20px;'>
+          <h3 class='md-headline'> Informasi Reservasi </h3>
+          <md-input-container flex='100'>
+            <label>Nama Lengkap</label>
+            <input ng-model='nama'></input>
+          </md-input-container>
+          <md-input-container flex='100'>
+            <label>Nomor Identitas (KTP/SIM/Paspor)</label>
+            <input ng-model='no_identitas'></input>
+          </md-input-container>
+          <md-input-container flex='100'>
+            <label>Nomor HP</label>
+            <input ng-model='hp'></input>
+          </md-input-container>
+          <md-input-container flex='100'>
+            <label>E-mail</label>
+            <input ng-model='email'></input>
+          </md-input-container>
+
+          <div layout='row'>
+            <md-button class='md-raised md-primary' flex='20'>Selanjutnya</md-button>
+          </div>
+        </md-card>
+      </div>
+    </div>
+  </div>
+
+  <div layout='column' flex='30'>
+
+    <md-card style='padding: 0px 20px 20px 20px;' ng-show='!booking_process'>
+      <h3 class='md-headline'> Info Jadwal &amp; Reservasi</h3>
+      <md-datepicker type='date' md-placeholder='Tanggal' ng-model='keberangkatan'></md-datepicker>
+      <md-input-container flex='100'>
+        <label> Pool Asal </label>
+        <md-select name='asal_id' ng-model='asal_id'>
+          <md-optgroup label='{{index}}' ng-repeat="(index,list) in pools">
+            <md-option ng-value="pool.id" ng-repeat="pool in list"> {{pool.nama}} </md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+      <md-input-container flex='100'>
+        <label> Pool Tujuan </label>
+        <md-select name='tujuan_id' ng-model='tujuan_id'>
+          <md-optgroup label='{{index}}' ng-repeat="(index,list) in pools">
+            <md-option ng-value="pool.id" ng-repeat="pool in list"> {{pool.nama}} </md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+
+      <md-button class='md-raised md-primary' ng-click="search()">Tampilkan</md-button>
+    </md-card>
+
+    <md-card style='padding: 0px 20px 20px 20px;' ng-show='booking_process'>
+      <h3 class='md-headline'> Info Perjalanan </h3>
+      <table style="width: 100%">
+      <tbody>
+        <tr><td>Rute</td><td>:</td><td>{{rute}}</td></tr>
+        <tr><td>Keberangkatan</td><td>:</td><td>{{rute_data.keberangkatan}}</td></tr>
+        <tr><td>Harga</td><td>:</td><td>{{rute_data.harga}}</td></tr>
+      </tbody>
+      </table>
+    </md-card>
+
+
+  </div>
+
+
+</div>

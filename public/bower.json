@@ -1,0 +1,17 @@
+{
+  "name": "luxaeterna",
+  "homepage": "https://github.com/ibrohimislam/luxaeterna",
+  "authors": [
+    "Ibrohim Kholilul Islam <ibrohimislam@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.3",
+    "angular-material": "^1.0.7",
+    "angular-route": "^1.5.3",
+    "angular-resource": "^1.5.3"
+  }
+}

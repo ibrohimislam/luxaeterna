@@ -1,7 +1,20 @@
 doctype html
 html
+
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
+    link(rel='stylesheet', href='/bower_components/angular-material/angular-material.min.css')
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')
+
+  block body
+
+  script(src='/bower_components/angular/angular.min.js')
+  script(src='/bower_components/angular-animate/angular-animate.min.js')
+  script(src='/bower_components/angular-aria/angular-aria.min.js')
+  script(src='/bower_components/angular-messages/angular-messages.min.js')
+  script(src='/bower_components/angular-material/angular-material.min.js')
+  script(src='/bower_components/angular-route/angular-route.min.js')
+  script(src='/bower_components/angular-resource/angular-resource.min.js')
+
+  block script
