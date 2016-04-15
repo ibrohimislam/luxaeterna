@@ -6,8 +6,8 @@ app.config(['$routeProvider', function($routeProvider) {
 		templateUrl: 'partials/info.html',
 		controller: 'ReservationController'
 	}).
-	when('/booking/:id', {
-		templateUrl: 'partials/booking.html',
+	when('/konfirmasi/:id', {
+		templateUrl: 'partials/konfirmasi.html',
 		controller: 'ReservationController'
 	}).
 
@@ -22,7 +22,7 @@ app.factory('SearchResources', function ($location, $resource) {
 
 	var base_url = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 
-    return $resource(base_url+'/api/v1/pencarian/pool/:tujuan_id/:asal_id/', {tujuan_id:'@tujuan_id', asal_id:'@asal_id'}, {
+    return $resource(base_url+'/api/v1/pencarian/pool/:tujuan_id/:asal_id', {tujuan_id:'@tujuan_id', asal_id:'@asal_id'}, {
         pool:  { method: 'GET', headers: auth_header},
     })
     
@@ -78,7 +78,7 @@ app.controller('ReservationController', function($location, $scope, SearchResour
 	$scope.pools_by_id = {};
 	$scope.routes_by_id = {};
 
-	$scope.booking_process = false;
+	$scope.state = 1;
 
 	PoolResources.list().$promise.then(function(server_response){
 		var pool = server_response.result;
@@ -87,7 +87,7 @@ app.controller('ReservationController', function($location, $scope, SearchResour
 	});
 
 	$scope.search = function() {
-		$scope.booking_process = false;
+		$scope.state = 1;
 
 		SearchResources.pool({tujuan_id:$scope.tujuan_id, asal_id:$scope.asal_id}).$promise.then(function (server_response) {
 			$scope.rute = $scope.pools_by_id[$scope.asal_id].nama + ' - ' + $scope.pools_by_id[$scope.tujuan_id].nama;
@@ -97,19 +97,25 @@ app.controller('ReservationController', function($location, $scope, SearchResour
 	}
 
 	$scope.booking = function(id) {
-		$scope.booking_process = true;
+		$scope.state = 2;
 		$scope.route_id = id;
 		$scope.rute_data = $scope.routes_by_id[id];
-		console.log();
 	}
 
 	$scope.submit = function(){
+		$scope.state = 3;
+		console.log($scope.route_id);
+
 		PemesananResources.store({
 			rute_id : $scope.route_id,
 			namalengkap : $scope.nama,
 			no_identitas : $scope.no_identitas,
 			hp : $scope.hp,
 			email : $scope.email,
+		}, function (data) {
+			console.log(data);
+		}, function (err) {
+			console.log(err);
 		});
 	}
 });

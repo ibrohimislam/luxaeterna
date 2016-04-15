@@ -1,55 +1,83 @@
+<div layout='row' style="text-align: center; margin-bottom: 30px;">
+
+<div flex='10'><div class='step' ng-class='{active:(state==1)}'><h2>1</h2></div>Rute</div>
+<div flex='10'><div class='step' ng-class='{active:(state==2)}'><h2>2</h2></div>Identitas</div>
+<div flex='10'><div class='step' ng-class='{active:(state==3)}'><h2>3</h2></div>Pembayaran</div>
+<div flex='10'><div class='step' ng-class='{active:(state==4)}'><h2>4</h2></div>Tiket</div>
+
+</div>
+
 <div layout='row'>
   <div flex='80'>
-    
-    <div ng-show='!booking_process && search_result'>
-      <h3>{{rute}}</h3>
-      <table style="width: 100%; text-align:center;">
-        <thead>
-          <tr><th width='10'>Keberangkatan</th><th  width='10'>Harga</th><th  width='10'>Status</th></tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="rute in search_result">
-          <td>{{rute.keberangkatan}}</td><td>{{rute.harga}}</td><td><md-button ng-click="booking(rute.id)" class='md-raised'>Booking</md-button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div layout='column'>
+      <md-card ng-show='state==1 && search_result' style='padding: 0px 20px 20px 20px;'>
+        <h3>{{rute}}</h3>
+        <table style="width: 100%; text-align:center;">
+          <thead>
+            <tr><th width='10'>Keberangkatan</th><th  width='10'>Harga</th><th  width='10'>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="rute in search_result">
+            <td>{{tanggal.toLocaleDateString() + ' ' + rute.keberangkatan}}</td><td>{{rute.harga}}</td><td><md-button ng-click="booking(rute.id)" class='md-raised'>Booking</md-button></td>
+            </tr>
+          </tbody>
+        </table>
+      </md-card>
+
+      <md-card ng-show='state==2' style='padding: 0px 20px 20px 20px;'>
+        <h3 class='md-headline'> Informasi Reservasi </h3>
+        <md-input-container flex='100'>
+          <label>Nama Lengkap</label>
+          <input ng-model='nama'>
+        </md-input-container>
+        <md-input-container flex='100'>
+          <label>Nomor Identitas (KTP/SIM/Paspor)</label>
+          <input ng-model='no_identitas'>
+        </md-input-container>
+        <md-input-container flex='100'>
+          <label>Nomor HP</label>
+          <input ng-model='hp'>
+        </md-input-container>
+        <md-input-container flex='100'>
+          <label>E-mail</label>
+          <input ng-model='email'>
+        </md-input-container>
+
+        <div layout='row'>
+          <md-button class='md-raised md-primary' flex='20' ng-click="submit()">Selanjutnya</md-button>
+        </div>
+      </md-card>
+
+      <md-card ng-show='state==3' style='padding: 0px 20px 20px 20px;'>
+        <h2>Informasi Perjalanan</h2>
+        <table style="width: 100%">
+          <tbody>
+            <tr><td style="width:200px;">Rute</td><td>:</td><td>{{rute}}</td></tr>
+            <tr><td>Keberangkatan</td><td>:</td><td>{{tanggal.toLocaleDateString() + ' ' + rute_data.keberangkatan}}</td></tr>
+            <tr><td>Harga</td><td>:</td><td>{{rute_data.harga}}</td></tr>
+          </tbody>
+        </table>
+        <h2>Informasi Pemesan</h2>
+        <table style="width: 100%">
+          <tbody>
+            <tr><td style="width:200px;">Nama Lengkap</td><td>:</td><td>{{nama}}</td></tr>
+            <tr><td>Nomor Identitas</td><td>:</td><td>{{no_identitas}}</td></tr>
+            <tr><td>Nomor HP</td><td>:</td><td>{{hp}}</td></tr>
+            <tr><td>E-mail</td><td>:</td><td>{{email}}</td></tr>
+          </tbody>
+        </table>
+
+      </md-card>
 
 
-    <div ng-show='booking_process'>
-      <div layout='column'>
-        <md-card style='padding: 0px 20px 20px 20px;'>
-          <h3 class='md-headline'> Informasi Reservasi </h3>
-          <md-input-container flex='100'>
-            <label>Nama Lengkap</label>
-            <input ng-model='nama'></input>
-          </md-input-container>
-          <md-input-container flex='100'>
-            <label>Nomor Identitas (KTP/SIM/Paspor)</label>
-            <input ng-model='no_identitas'></input>
-          </md-input-container>
-          <md-input-container flex='100'>
-            <label>Nomor HP</label>
-            <input ng-model='hp'></input>
-          </md-input-container>
-          <md-input-container flex='100'>
-            <label>E-mail</label>
-            <input ng-model='email'></input>
-          </md-input-container>
-
-          <div layout='row'>
-            <md-button class='md-raised md-primary' flex='20' ng-click="submit()">Selanjutnya</md-button>
-          </div>
-        </md-card>
-      </div>
     </div>
   </div>
 
   <div layout='column' flex='30'>
 
-    <md-card style='padding: 0px 20px 20px 20px;' ng-show='!booking_process'>
+    <md-card style='padding: 0px 20px 20px 20px;' ng-show='state==1'>
       <h3 class='md-headline'> Info Jadwal &amp; Reservasi</h3>
-      <md-datepicker type='date' md-placeholder='Tanggal' ng-model='keberangkatan'></md-datepicker>
+      <md-datepicker type='date' md-placeholder='Tanggal' ng-model='tanggal'></md-datepicker>
       <md-input-container flex='100'>
         <label> Pool Asal </label>
         <md-select name='asal_id' ng-model='asal_id'>
@@ -70,12 +98,12 @@
       <md-button class='md-raised md-primary' ng-click="search()">Tampilkan</md-button>
     </md-card>
 
-    <md-card style='padding: 0px 20px 20px 20px;' ng-show='booking_process'>
+    <md-card style='padding: 0px 20px 20px 20px;' ng-show='state==2'>
       <h3 class='md-headline'> Info Perjalanan </h3>
       <table style="width: 100%">
       <tbody>
         <tr><td>Rute</td><td>:</td><td>{{rute}}</td></tr>
-        <tr><td>Keberangkatan</td><td>:</td><td>{{rute_data.keberangkatan}}</td></tr>
+        <tr><td>Keberangkatan</td><td>:</td><td>{{tanggal.toLocaleDateString() + ' ' + rute_data.keberangkatan}}</td></tr>
         <tr><td>Harga</td><td>:</td><td>{{rute_data.harga}}</td></tr>
       </tbody>
       </table>

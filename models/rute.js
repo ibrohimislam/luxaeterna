@@ -1,6 +1,6 @@
 var model = function(db, cb) {
     var rute = db.define("rute", {
-        keberangkatan : {type: 'date', time: true   },
+        keberangkatan : String,
         harga : Number
     }, {
         methods: {},
