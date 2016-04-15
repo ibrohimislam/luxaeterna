@@ -16,9 +16,8 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.post('/:id', function(req, res, next) {
-  console.log(req.body);
-  res.send("");
+router.post('/', function(req, res, next) {
+
 });
 
 

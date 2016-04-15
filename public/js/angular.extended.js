@@ -58,7 +58,19 @@ app.factory('RouteResources', function ($location, $resource) {
     })
 });
 
-app.controller('ReservationController', function($location, $scope, SearchResources, PoolResources){
+
+app.factory('PemesananResources', function ($location, $resource) {
+
+	var auth_header = { 'Authorization': 'Basic aWJyb2hpbWlzbGFtQGdtYWlsLmNvbTpwYXNzd29yZA=='};
+
+	var base_url = $location.protocol() + "://" + $location.host() + ":" + $location.port();
+
+    return $resource(base_url + '/api/v1/pemesanan/:id', {id:'@id'}, {
+        store: { method: 'POST', headers: auth_header},
+    })
+});
+
+app.controller('ReservationController', function($location, $scope, SearchResources, PoolResources, PemesananResources){
 
 	var base_url = $location.protocol() + "://" + $location.host() + ":" + $location.port();
 
@@ -92,6 +104,12 @@ app.controller('ReservationController', function($location, $scope, SearchResour
 	}
 
 	$scope.submit = function(){
-		
+		PemesananResources.store({
+			rute_id : $scope.route_id,
+			namalengkap : $scope.nama,
+			no_identitas : $scope.no_identitas,
+			hp : $scope.hp,
+			email : $scope.email,
+		});
 	}
 });
