@@ -1,0 +1,117 @@
+body {
+	background-color: #eee;
+}
+.menu {
+	background-color: #fff;
+}
+
+.menu>.logo {
+	background-color: #5f6f81;
+}
+.menu>.logo:hover {
+	background-color: #5f6f81;
+}
+.menu>.logo>a{
+	color: #fff;
+}
+
+.menu>li:hover {
+	background-color: #ddd;
+}
+
+.panel-heading {
+	padding: 15px;
+    background: #5f6f81;
+    color: #fff;
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.panel-body {
+	padding: 15px;
+    background: #fff;
+    -webkit-border-bottom-left-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomright: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+td>.button {
+	margin: 0;
+}
+
+.space {
+    /*background-color: #333;*/
+}
+.space > a {
+    display: none;
+}
+
+.space:hover {
+    background-color: #AFA;
+    border-radius: 4px;
+}
+
+.space:hover > a {
+    display: block;
+    color: #777;
+}
+
+.reveal.tiny {
+    width: 10%;
+}
+
+.occupied {
+    border-radius: 4px;
+}
+.occupied > a:hover {
+    color: #faa;
+}
+
+
+.color1{ background-color: #3B8A2E }
+.color2{ background-color: #70BD33 }
+.color3{ background-color: #64A733 }
+.color4{ background-color: #B8ECD7 }
+.color5{ background-color: #B1E001 }
+.color6{ background-color: #CEF09D }
+.color7{ background-color: #476C5E }
+.color8{ background-color: #6AA4A7 }
+.color9{ background-color: #F5DF7F }
+.color10{ background-color: #C09D5B }
+.color11{ background-color: #8C501D }
+.color12{ background-color: #1682FF }
+.color13{ background-color: #67AEE8 }
+.color14{ background-color: #34B7FF }
+.color15{ background-color: #30B8E8 }
+.color16{ background-color: #56E2FF }
+.color17{ background-color: #3FFFD0 }
+.color18{ background-color: #3AE89D }
+.color19{ background-color: #3FFF88 }
+.color20{ background-color: #3AE85C }
+.color21{ background-color: #3FFF40 }
+.color22{ background-color: #5AFBFF }
+.color23{ background-color: #0C49FA }
+.color24{ background-color: #0200FF }
+.color25{ background-color: #26AAFF }
+.color26{ background-color: #77CFD9 }
+.color27{ background-color: #DEF294 }
+.color28{ background-color: #67C287 }
+.color29{ background-color: #F27052 }
+
+
+.rusak {
+    background-color: #BF0404;
+}
+
+.rusak:nth-child(even) {
+    background-color: #BF0404;
+}
+
+.alert {
+    background-color: #FF1414 !important;
+}

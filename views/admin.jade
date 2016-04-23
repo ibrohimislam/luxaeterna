@@ -1,0 +1,44 @@
+doctype html
+html.no-js(lang='en', ng-app='myApp')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Arnes Shuttle
+    link(rel='stylesheet', href='css/app.css')
+    link(rel='stylesheet', href='css/app.extended.css')
+    link(rel='stylesheet', href='css/foundation-icons.css')
+    link(rel='stylesheet', href='css/autocomplete.css')
+  body
+    .row(style='margin-top: 10px;')
+      .medium-12.columns
+        ul.menu(style='border: 1px solid #DDD; border-radius: 3px;')
+          li.menu-text.logo
+            a(href='#') Arnes Shuttle
+          li
+            a(href='#/') Beranda
+          li
+            a(href='#/checkin') Cek Tiket
+          li
+            a(href='#/rute') Route
+          li
+            a(href='#/pool') Pool
+          li
+            a(href='#/laporan') Laporan
+      #view(ng-view='')
+    #spinner.reveal.tiny(style='width: 5%;', data-reveal='')
+      img(src='/img/spinner.gif')
+    script(src='bower_components/jquery/dist/jquery.js')
+    script(src='bower_components/what-input/what-input.js')
+    script(src='bower_components/foundation-sites/dist/foundation.js')
+    script(src='bower_components/angular/angular.min.js')
+    script(src='bower_components/angular-resource/angular-resource.min.js')
+    script(src='bower_components/angular-route/angular-route.min.js')
+    script(src='js/admin/app.js')
+    script(src='js/admin/app.library.js')
+    script(src='js/admin/app.extended.js')
+    script(src='js/admin/controllers/pool.js')
+    script(src='js/admin/controllers/rute.js')
+    script(src='js/admin/controllers/pemesanan.js')
+    script(src='js/admin/controllers/laporan.js')
+    script(src='js/admin/controllers/checkin.js')

@@ -1,0 +1,98 @@
+        <div class="medium-12 columns" style="margin-top: 10px;">
+            <div class="panel-heading">
+                Daftar Pool
+            </div>
+            <div class="panel-body">
+                <div class="text-right">
+                    <a class="button success" data-open="modalTambah"><i class="fi-plus"></i>&nbsp;Tambah</a>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                        <th>Pool Asal</th>
+                        <th>Pool Tujuan</th>
+                        <th>Keberangkatan</th>
+                        <th>Tarif</th>
+                        <th width="200">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(_, route) in routes">
+                            <td>{{route.asal.nama}}</td>
+                            <td>{{route.tujuan.nama}}</td>
+                            <td>{{route.keberangkatan}}</td>
+                            <td>{{route.harga}}</td>
+                            <td>
+                                <a ng-click="showUpdate(route.id)" class="button info"><i class="fi-pencil"></i>&nbsp;Ubah</a>
+                                <a ng-click="confirmDestroy(route.id)" class="button alert"><i class="fi-trash"></i>&nbsp;Hapus</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="reveal" id="modalTambah" data-reveal>
+            <button class="close-button" ng-click="error_messages=[]" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Tambah Pool</h2>
+            <div ng-repeat="(_, message) in error_messages" class="primary callout">
+                <p><i class="fi-info"></i> {{message}}.</p>
+            </div>
+            <form id="form-tambah">
+                <label>Asal:
+                    <select ng-model="new_data.asal_id">
+                      <option ng-repeat="(_,data_pool) in pool" ng-value="data_pool.id" ng-selected="pool.pool_id==data_pool.id">{{data_pool.nama}}</option>
+                    </select>
+                </label>
+                <label>Tujuan:
+                    <select ng-model="new_data.tujuan_id">
+                      <option ng-repeat="(_,data_pool) in pool" ng-value="data_pool.id" ng-selected="pool.pool_id==data_pool.id">{{data_pool.nama}}</option>
+                    </select>
+                </label>
+                <label>Keberangkatan:<input type="text" name="keberangkatan" ng-model="new_data.keberangkatan"></label>
+                <label>Tarif:<input type="text" name="harga" ng-model="new_data.harga"></label>
+                <a class="button" ng-click="add()">Tambah</a>
+            </form>
+        </div>
+
+        <div class="reveal" id="modalHapus" data-reveal>
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Perhatian</h2>
+            <form id="form-hapus">
+                <input type="hidden" id="hapus-id">
+                <p>Apakah Anda yakin untuk menghapus data kuliah ini?</p>
+                <a class="button alert" ng-click="destroy()">Hapus</a>
+            </form>
+        </div>
+
+        <div class="reveal" id="modalUbah" data-reveal>
+            <button class="close-button" ng-click="error_messages_edit = []" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Ubah Pool</h2>
+            <div ng-repeat="(_, message) in error_messages_edit" class="primary callout">
+                <p><i class="fi-info"></i> {{message}}</p>
+            </div>
+            <input type="hidden" id="ubah-id">
+            <form id="form-ubah">
+                <label>Asal:
+                    <select disabled>
+                      <option ng-repeat="(_,data_pool) in pool" ng-value="data_pool.id" ng-selected="rute.asal_id==data_pool.id">{{data_pool.nama}}</option>
+                    </select>
+                </label>
+                <label>Tujuan:
+                    <select disabled>
+                      <option ng-repeat="(_,data_pool) in pool" ng-value="data_pool.id" ng-selected="rute.tujuan_id==data_pool.id">{{data_pool.nama}}</option>
+                    </select>
+                </label>
+                <label>Keberangkatan:<input type="text" name="keberangkatan" ng-model="rute.keberangkatan"></label>
+                <label>Tarif:<input type="text" name="harga" ng-model="rute.harga"></label>
+                <a class="button" ng-click="update()">Ubah</a>
+            </form>
+        </div>

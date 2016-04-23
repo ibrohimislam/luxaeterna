@@ -13,15 +13,22 @@ function setup(db) {
   pemesanan(db);
 }
 
-module.exports = function (cb) {
-  if (connection) return connection;
+module.exports = function (req, res, next) {
+  if (connection == null) {
+    orm.connect("mysql://root@localhost/luxaeterna?pool=true", function (err, db) {
+      if (err) return res.status(500).send(err);
 
-  orm.connect("mysql://root@localhost/luxaeterna", function (err, db) {
-    if (err) return cb(err);
+      connection = db;
+      setup(connection);
 
-    connections = db;
-    setup(db);
-
-    cb(null, db);
-  });  
+      req.db = connection;
+      req.models = connection.models;
+      next();
+    });
+  }
+  else {
+    req.db = connection;
+    req.models = connection.models;
+    next();
+  }
 };

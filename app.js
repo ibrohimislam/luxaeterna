@@ -14,16 +14,7 @@ var app = express();
 
 var database = require('./database');
 
-app.use(function (req, res, next) {
-  database(function (err, db) {
-    if (err) return res.status(500).send(err);
-
-    req.db = db;
-    req.models = db.models;
-
-    next();
-  });
-});
+app.use(database);
 
 // --- database middleware [end] ---
 

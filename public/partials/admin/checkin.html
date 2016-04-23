@@ -1,0 +1,20 @@
+<div class="medium-12 columns" style="margin-top: 10px;">
+<div class="panel-heading">
+Cek Tiket
+</div>
+<div class="panel-body">
+
+<label> ID TIKET:
+<input ng-model="id" my-enter="test()"></label> <br/>
+
+<table>
+<tbody>
+<tr><td style="width:120px;">Nama Lengkap</td><td>:</td><td>{{tiket.namalengkap}}</td></tr>
+<tr><td>Nomor Identitas</td><td>:</td><td>{{tiket.no_identitas}}</td></tr>
+<tr><td style="width:120px;">Rute</td><td>:</td><td>{{tiket.rute_string}}</td></tr>
+<tr><td>Keberangkatan</td><td>:</td><td>{{tiket.tanggal.toLocaleDateString() + ' ' + rute_data.keberangkatan}}</td></tr>
+<tr><td>Status</td><td>:</td><td>{{tiket.status}}</td></tr>
+</tbody>
+</table>
+</div>
+</div>

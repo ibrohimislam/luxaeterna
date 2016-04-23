@@ -1,3 +1,6 @@
+body {
+	background-color: #BDBDBD;
+}
 .step {
 	font-size:20px;
 }
@@ -9,9 +12,28 @@
 	width: 50px;
 	height: 50px;
 	border-radius: 25px;
-	background-color: #9e9e9e;
+	background-color: #E0E0E0;
+	color: #000;
 }
 
 .step.active h2 {
-	background-color: #9e9efe;
+	background-color: #2196F3;
+	color: #fff;
+}
+
+.paid {
+	color: #4CAF50;
+}
+
+.unpaid {
+	color: #F44336;
+}
+
+.wait {
+	color: #9E9E9E;
+}
+
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
 }

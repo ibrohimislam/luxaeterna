@@ -15,4 +15,7 @@ router.use('/'+version+'/pemesanan', pemesanan);
 var pencarian = require('./api/'+version+'/pencarian');
 router.use('/'+version+'/pencarian', pencarian);
 
+var kota = require('./api/'+version+'/kota');
+router.use('/'+version+'/kota', kota);
+
 module.exports = router;

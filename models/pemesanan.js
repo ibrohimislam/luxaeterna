@@ -4,11 +4,16 @@ var model = function(db, cb) {
         email: String,
         hp: String,
         rute_id: String,
-        no_identitas: String
+        no_identitas: String,
+        tanggal: { type: "date", time: false },
+        status: Number
     }, {
         methods: {},
-        validations: {}
+        validations: {},
+        cache : false
     });
+
+    pemesanan.hasOne("rute", db.models.rute, {autoFetch: true});
 
     return pemesanan;
 }

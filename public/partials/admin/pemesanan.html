@@ -1,0 +1,48 @@
+        <div class="medium-12 columns" style="margin-top: 10px;">
+            <div class="panel-heading">
+                Daftar Pesanan
+            </div>
+            <div class="panel-body">
+                <table>
+                    <thead>
+                        <tr>
+                        <th width="200">Nama</th>
+                        <th>HP</th>
+                        <th>Rute</th>
+                        <th>Keberangkatan</th>
+                        <th>Pembayaran</th>
+                        <th width="200">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(_, pesanan) in list_pesanan">
+                            <td>{{pesanan.namalengkap}}</td>
+                            <td>{{pesanan.hp}}</td>
+                            <td>{{pesanan.rute_string}}</td>
+                            <td>{{pesanan.tanggal.toLocaleDateString()}}</td>
+                            <td>{{pesanan.tarif}}</td>
+                            <td>
+                                <a ng-click="showKonfirmasi(pesanan.id)" class="button info"><i class="fi-check"></i>&nbsp;Konfirmasi</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="reveal" id="modalUbah" data-reveal>
+            <button class="close-button" ng-click="error_messages_edit = []" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Konfirmasi Pembayaran</h2>
+            <p>Apakah pembayaran telah dilakukan?</p>
+            <div ng-repeat="(_, message) in error_messages_edit" class="primary callout">
+                <p><i class="fi-info"></i> {{message}}</p>
+            </div>
+            <input type="hidden" id="ubah-id">
+            <div class="row collapse">
+            <a class="button small-3 columns" ng-click="update()">Sudah</a>
+            <a class="button secondary small-3 columns" data-close aria-label="Close modal" type="button">Belum</a>
+            </div>
+        </div>

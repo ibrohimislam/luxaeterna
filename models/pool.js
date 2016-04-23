@@ -1,9 +1,11 @@
 var model = function(db, cb) {
     var pool = db.define("pool", {
-        nama : String
+        nama : String,
+        kota_id: String
     }, {
         methods: {},
-        validations: {}
+        validations: {},
+        cache : false
     });
     
     pool.hasOne("kota", db.models.kota, {autoFetch: true});
